@@ -3,17 +3,22 @@
 #include<string>
 #include<sstream>
 
+// Idea is to use segment tree of nodes
+// the node tracks 5 items. They are clear from definition
+// below. I have essentially modified, albiet heavily,
+// the code of Steven Halim in CP3
+
 using namespace std;
 struct Node {
     int maxfreq; //max freq in this interval
-    int beginlen; // len of beginning seq
-    int traillen; // len of trailing seq
-    int beginint;
-    int trailint;
+    int beginlen; // length of beginning sequence of equal numbers
+    int traillen; // length of trailing  sequence of equal numbers
+    int beginint; //first int in the sequence
+    int trailint; // the last int in the sequence
     Node (int mf, int bl, int tl, int bc, int tc ) : maxfreq(mf), beginlen(bl), traillen(tl),
     beginint(bc), trailint(tc){}
     Node() {
-        Node(0,0,0,' ',' ');
+        Node(-1,0,0,0,0);
     }
 
     bool operator ==(Node other) {
@@ -23,7 +28,7 @@ struct Node {
     }
 };
 
-Node invalid = Node(0,0,0,' ', ' ');
+const Node invalid = Node(-1,0,0,0,0);
 
 class SegmentTree {
     private:
@@ -74,13 +79,16 @@ class SegmentTree {
             if (n2 == invalid)
                 return n1;
 
-            auto n = join(n1, n2);
-            return n;
+            return join(n1, n2);
         }
 
+        //Takes two nodes representing adjacent segments and combines them
         Node join(Node n1, Node n2) {
 
             int mf= max(n1.maxfreq, n2.maxfreq);
+            if (n1.trailint == n2.beginint) // check if longest sequence crosses the boundary
+                mf = max(mf, n1.traillen + n2.beginlen);
+
             int beginint = n1.beginint;
             int trailint = n2.trailint;
             int beginlen = n1.beginlen;
@@ -96,8 +104,6 @@ class SegmentTree {
                 traillen += n1.traillen;
 
             return Node(mf, beginlen, traillen, beginint, trailint);
-        
-
         }
 
     public:
@@ -111,8 +117,6 @@ class SegmentTree {
         int query (int i, int j) {
             return query(1, i-1, j-1, 0, vsize-1).maxfreq;
         }
-
-
 };
 
 int main() {
