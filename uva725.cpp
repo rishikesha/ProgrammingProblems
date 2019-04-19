@@ -18,7 +18,7 @@ bool check(int n, int m){
         m = m /10;
     }
 
-    return c == 1023;
+    return c == 1023; // c is being used as bitset
 }
 
 
