@@ -15,16 +15,16 @@
 
 using namespace std;
 
+
 int disthelper(int x, int y, int a) {
     return abs(x-a/5) + abs(y-a%5);
 }
 
-int dist(int x, int y, int p, int a1, int a2, int a3, int a4, int a5) {
-    return p * min(disthelper(x,y,a1), 
-            min(disthelper(x,y,a2),
-                min(disthelper(x,y,a3),
-                    min(disthelper(x,y,a4),
-                        disthelper(x,y,a5)))));
+int dist(int x, int y, int p, vector<int> &a) {
+    int tmp[5];
+    transform(a.begin(), a.end(), tmp,
+            [&x,&y](int u) {return disthelper(x,y,u);});
+    return p * *min_element(tmp, tmp+5);
 }
 
 
@@ -40,20 +40,20 @@ int main() {
         }
 
         int64_t mindist=INT64_MAX;
-        vector<int> answer(5);
-        for(int a1 = 0; a1 < 25; a1++) {
-            for(int a2 = a1+1; a2 < 25; a2++) {
-                for(int a3 = a2+1; a3 < 25; a3++) {
-                    for(int a4 = a3+1; a4 < 25; a4++) {
-                        for(int a5 = a4+1; a5 < 25; a5++) {
+        vector<int> answer(5), a(5);
+        for(a[0] = 0; a[0] < 25; a[0]++) {
+            for(a[1] = a[0]+1; a[1] < 25; a[1]++) {
+                for(a[2] = a[1]+1; a[2] < 25; a[2]++) {
+                    for(a[3] = a[2]+1; a[3] < 25; a[3]++) {
+                        for(a[4] = a[3]+1; a[4] < 25; a[4]++) {
                             int64_t distcalc = 0;
                             for(int i = 0; i< nareas; i++) {
                                 distcalc += dist(x[i], y[i],
-                                        population[i], a1,a2,a3,a4,a5);
+                                        population[i], a);
                             }
                             if (distcalc < mindist) {
                                 mindist=distcalc;
-                                answer = {a1,a2,a3,a4,a5};
+                                answer = a;
                             }
                         }
                     }
