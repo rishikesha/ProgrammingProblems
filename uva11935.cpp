@@ -29,11 +29,11 @@ using namespace std;
 
 int main() {
     string s;
-    bool done = false;
     vector<double> fuelconsumed(1); //Keeps track of fuel needed till the next gas station of the goal
     int fuelconsumption;
     int leaks = 0, prevmarker = 0;
-    int when, quantity; string what;
+    int when;
+    string what;
     while (true) {
         getline(cin, s);
         auto iss = istringstream(s);
@@ -74,7 +74,7 @@ int main() {
             fuelconsumed.back() += double(when - prevmarker)*fuelconsumption/100.0 + 
                 (when - prevmarker) * leaks;
             prevmarker = when;
-            fuelconsumed.push_back(0);
+            fuelconsumed.push_back(0); //add a new fuel counter at the end of the vector
 
         }
 
