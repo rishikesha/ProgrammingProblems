@@ -37,15 +37,15 @@ int main() {
         for(int i = 0; i < 6; i++) iss >> v[i];
 
         double left = 0, right = 1;
-        double lf, rf, mid, mf;
+        double lf=func(v,left), rf=func(v,right), mid, mf;
         
 
-        if (func(v, left) * func(v, right) > 0) {
+        if (lf * rf > 0) {
             printf("No solution\n");
         } else {
             do {
-                 mid = (left + right)/2;
-                 mf = func(v, mid);
+                mid = (left + right)/2;
+                mf = func(v, mid);
                 if (mf * lf > 0)  {
                     left = mid;
                     lf = mf;
@@ -55,8 +55,9 @@ int main() {
                     rf  =mf;
 
                 }
-            } while (abs(mf) > 0.0001);
+            } while (abs(mf) > 1e-9);
+            int ans = round(10000*mid);
+            printf("%d.%04d\n", ans/10000,ans%10000);
         }
-        printf("%0.4f\n", mid);
     }
 }
