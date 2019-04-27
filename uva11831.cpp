@@ -1,4 +1,6 @@
-
+/* Rishikesh
+ * UVA 11831 Sticker Collector Robot
+ */
 #include<iostream>
 #include<string>
 #include<sstream>
