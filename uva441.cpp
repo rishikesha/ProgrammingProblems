@@ -1,3 +1,6 @@
+/* Rishikesh
+ * UVA 441 Lotto
+ */
 #include<iostream>
 using namespace std;
 
@@ -21,17 +24,21 @@ void process(int m){
             }
         }
     }
-
-    cout << "\n";
-
 }
 
 
 
 int main() {
     int m;
-    while(cin>>m, m) {
+    cin >> m;
+    while(true) {
         process(m);
+        cin>>m;
+        if(m) {
+            cout << "\n";
+        }
+        else
+            break;
     }
 
 
