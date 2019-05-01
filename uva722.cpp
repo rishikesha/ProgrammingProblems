@@ -65,7 +65,7 @@ int main() {
         int ans = 1, m = terrain.size(), n = terrain[0].size();
         vector<vector<int>> visited(m, vector<int>(n, 0));
         visited[wi][wj] = 1;
-        stack<pair<int, int>> st;
+        stack<pair<int, int>> st; //for dfs
         st.push(make_pair(wi, wj));
         while(!st.empty()) {
             auto t = st.top();
