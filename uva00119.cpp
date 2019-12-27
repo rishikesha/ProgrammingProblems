@@ -1,7 +1,8 @@
 /* Rishikesh
  * UVA 00119 Greed Gift Givers
- * This use udebug solve this problem. It is a problem from the 90s and it
- * has all the kinks and problems which have since been ironed out. Moreover
+ * I used udebug to solve this problem. This is a problem from the 90s 
+ * and it
+ * has all the kinks which have since been ironed out. Moreover
  * STL and java libraries have made this much easier that it would have been
  * at the time.
  */
