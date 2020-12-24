@@ -9,7 +9,9 @@ import sys, os, bisect
 def check(sh1, lim):
     """
     Check if lim is an upper bound for the weight
-    you have to lift in sh1
+    you have to lift in sh1. One does not have to lift
+    heavier weight if any pair  of heavier weights 
+    is separated by weights less than or equal to lim
     """
     firstOverLim = None
     for s in sh1:
@@ -41,7 +43,7 @@ def main():
             s.add(w)
 
     lo = 0 if len(s) == 0  else max(s)
-    hi =  10**9
+    hi =  max(max(sh1), max(sh2))
     mid = None
 
     while lo < hi:
