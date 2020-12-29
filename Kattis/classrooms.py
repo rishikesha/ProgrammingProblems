@@ -2,7 +2,11 @@
 
 # Classrooms
 # https://open.kattis.com/problems/classrooms
-#
+# The logic is contained in the function main()
+# The rest of the rather large file is an implementation of Red Black Tree
+# This implementation is complete in the sense that it implements everything 
+# To develop an augmented balanced binary tree one only has to change the
+# _leftRotate and _rightRotate functions to preserve any augmentation properties.
 
 import os, sys, heapq
 from enum import Enum
