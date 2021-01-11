@@ -6,10 +6,14 @@
 # This works but gives TLE on the largest test
 # Any improvments would come at the cost of clarity, so I am
 # leaving it like this. If you think that I missed something
-# easy, please let me know. As I am writing this, there is
+# easy, please let me know. Using the profile function I figured
+# out that even if I reduce object constructions to minimum, the
+# largest test will not finish in less than 3 seconds.
+# As I am writing this, there is
 # a fast solution in Python3 which was accepted, but I
 # do not know how he solved it.
-# main() has the main logic
+# main() has the main logic.
+# Largest test case came from https://www.udebug.com/UVa/11573
 
 
 import os, sys, heapq
@@ -69,10 +73,10 @@ def dijkstra(flow, rs, cs, rd, cd):
 
 
 def neighbors(n, m, r, c, finished):
-    disp = [-1, 0, 1]
-    result = [(r+i, c+j) for i in disp for j in disp]
+    disp = [(-1,-1), (-1,0), (-1, 1), (0,-1), (0,1), (1,-1), (1,0), (1,1)]
+    result = [(r+i, c+j) for (i,j) in disp]
     return [(x,y) for (x,y) in result if x >= 0 and x < n and\
-        y >= 0 and y < m and (x,y) != (r,c) and not finished[x][y]]
+        y >= 0 and y < m  and not finished[x][y]]
 
 def weight(flow, rn, cn, r, c):
     d = {
