@@ -4,8 +4,7 @@
 # https://open.kattis.com/problems/justforsidekicks
 # The idea of using 6 Fenwick trees is from the website
 # https://cpbook.net
-# It would have taken me much longer to solve the problem
-# without that hint.
+# This hint made the solving this problem much easier.
 
 
 import sys, os
