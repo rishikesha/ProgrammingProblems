@@ -3,6 +3,8 @@
 import os, sys
 
 # Moscow Dream
+# https://open.kattis.com/problems/moscowdream
+#
 # Everything is obvious except that we have to check
 # there are adequate number of problems, and the number
 # of problems is at least 3
