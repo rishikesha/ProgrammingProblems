@@ -13,7 +13,7 @@ from collections import Counter
 def solve(counter : Counter, d : int, limit : int) -> int:
     """
     Simulate the problem for d days and give out the number of
-    farms at the end of d days.
+    farms at the end of d days. The raw formula is also pretty easy.
     """
     for i in range(d):
         counter2 = Counter()
